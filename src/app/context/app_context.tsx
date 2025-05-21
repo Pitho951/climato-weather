@@ -23,6 +23,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
             updateWeather(getWeatherPeriod());
             setIsMobile(getIsMobile);
         }, 1000);
+
+        updateWeather(getWeatherPeriod());
     }, []);
 
     return (

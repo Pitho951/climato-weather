@@ -16,7 +16,6 @@ function WeatherComponent() {
     const [clouds, setClouds] = useState<React.JSX.Element[]>([]);
 
     const generateClouds = useCallback(() => {
-
         return Array.from({ length: isMobile ? 5 : 20 }, (_, index) => {
             return <Cloud
                 index={index}
@@ -35,7 +34,7 @@ function WeatherComponent() {
         <div className="weatherContainer preventActions">
             {clouds}
             <img className={`sun preventActions ${weather === "day" ? "enter" : "leave"}`} src="/assets/images/sun.webp" />
-            <img className={`moon preventActions  ${weather === "night" ? "enter" : "leave"}`} src="/assets/images/moon.webp" />
+            <img className={`moon preventActions ${weather === "night" ? "enter" : "leave"}`} src="/assets/images/moon.webp" />
 
             <img ref={nightBg} className={`cityBackground preventActions`} src="/assets/images/mountains.webp" />
             <img ref={dailyBg} className={`w-100 h-100 weatherBackground preventActions ${weather === 'night' ? 'deactive' : ''}`} src="/assets/images/backgrounds/desktop-morning-background.jpg" />

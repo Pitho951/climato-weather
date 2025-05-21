@@ -87,9 +87,9 @@ export function mapCityData(city: WeatherCity, list: ListEntity[]): CurrentCityT
 }
 
 export function getWeatherPeriod() {
-    const now = DateTime.local();
+    const now = DateTime.local({ zone: "America/Sao_Paulo"});
     const nowFormat = now.toFormat("HH:mm");
-
+    
     if ((nowFormat >= "18:00" || nowFormat < "06:00")) {
         return "night"
     }
