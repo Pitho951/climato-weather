@@ -122,9 +122,8 @@ function DaySwiperDescriptionComponent({
                                 fill: true,
                                 backgroundColor: gradient,
                                 borderColor: getDayColor().borderColor,
-                                tension: 0.3,
-                                extraInfo: []
-                            } as any,
+                                tension: 0.3
+                            },
                         ]
                     }
                 });

@@ -4,7 +4,6 @@ import { Cloud } from "@/app/components/cloud";
 import { Moon } from "@/app/components/moon";
 import { Sun } from "@/app/components/sun";
 import { AppContext } from "@/app/context/app_context";
-import { AnimatePresence } from "framer-motion";
 import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 
 function WeatherComponent() {
@@ -32,7 +31,7 @@ function WeatherComponent() {
 export const Weather = React.memo(WeatherComponent)
 
 
-const Clouds = React.memo(({ isMobile, cloudPercent }: { isMobile: boolean, cloudPercent: number }) => {
+function CloudsComponent({ isMobile, cloudPercent }: { isMobile: boolean, cloudPercent: number }) {
     const [clouds, setClouds] = useState<React.JSX.Element[]>([]);
 
     const generateClouds = useCallback((quantity: number) => {
@@ -54,5 +53,7 @@ const Clouds = React.memo(({ isMobile, cloudPercent }: { isMobile: boolean, clou
         setClouds(gClouds);
     }, [generateClouds]);
 
-    return clouds
-})
+    return <>{clouds}</>
+}
+
+const Clouds = React.memo(CloudsComponent)

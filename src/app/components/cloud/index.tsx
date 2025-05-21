@@ -1,10 +1,9 @@
 'use client';
 
 import { AppContext } from "@/app/context/app_context";
-import { animator } from "chart.js";
 import { AnimatePresence, motion } from "framer-motion";
-import _, { cloneDeep } from "lodash";
-import { useCallback, useContext, useEffect, useMemo, useRef, useState, useTransition } from "react";
+import _ from "lodash";
+import { useCallback, useContext, useEffect, useMemo, useRef } from "react";
 
 
 export function Cloud({
@@ -101,6 +100,10 @@ export function Cloud({
                 const speed = (getXSpeed() * delta);
 
                 cloudElement.style.left = `${axisX.current + speed}px`;
+
+                if(isOut()){
+                    regenerate();
+                }
 
                 animationId = requestAnimationFrame(animate);
                 if (firstIteration) firstIteration = false;

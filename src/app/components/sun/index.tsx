@@ -1,7 +1,7 @@
 'use client';
 
-import { AppContext } from "@/app/context/app_context"
-import React, { useContext, useEffect, useRef, useState } from "react"
+import { AppContext } from "@/app/context/app_context";
+import React, { useContext, useEffect, useState } from "react";
 
 export function SunComponent() {
     const {

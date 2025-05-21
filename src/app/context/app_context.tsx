@@ -68,7 +68,3 @@ type AppContextProps = {
 }
 
 type WeatherType = "day" | "night";
-
-type WeatherConfig = {
-    wind: number
-}

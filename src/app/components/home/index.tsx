@@ -4,12 +4,12 @@ import { DaySwiperDescription } from "@/app/components/day-description-swiper";
 import { SearchBar } from "@/app/components/search-bar";
 import { Skeleton } from "@/app/components/skeleton";
 import { Weather } from "@/app/components/weather";
+import { AppContext } from "@/app/context/app_context";
 import { CurrentCityType } from "@/app/page";
-import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { Alert, Button, Collapse, Placeholder } from "react-bootstrap";
 import _ from "lodash";
 import { DateTime } from "luxon";
-import { AppContext } from "@/app/context/app_context";
+import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { Alert, Button, Collapse, Placeholder } from "react-bootstrap";
 
 
 export function Home({ city: initialCity }: { city: CurrentCityType | null }) {
