@@ -70,7 +70,7 @@ export function Home({ city: initialCity }: { city: CurrentCityType | null }) {
 
                     <div className="display   d-flex flex-column align-items-center justify-content-center  m-auto overflow-hidden">
                         <div className="textShadow">
-                            <p className="m-0 fs-5"  >Hoje, {today.toFormat("dd/MM")}</p>
+                            <p className="m-0 fs-5"  >Hoje, {today.setLocale("pt-br").toFormat("dd/MM")}</p>
                             <p className="m-0 displayTemp">{Number(currentCity?.temp.current.toFixed(0))}&deg;C</p>
                             <p className={`fs-5 m-0 textShadow `} >Máxima: {Number(currentCity?.temp.max.toFixed(0))}&deg;  Miníma: {Number(currentCity?.temp.min.toFixed(0))}&deg;</p>
                         </div>
