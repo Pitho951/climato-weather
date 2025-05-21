@@ -27,18 +27,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         }, 1000);
 
         setTimeout(() => {
-            updateWeather("night")
-        }, 5000);
-
-        setTimeout(() => {
-            updateWeather("day")
-        }, 10000);
-
-        setTimeout(() => {
-            updateWeather("night")
-        }, 15000);
-
-        setTimeout(() => {
             updateWeather("day")
         }, 20000);
         updateWeather(getWeatherPeriod());

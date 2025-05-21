@@ -3,11 +3,6 @@ import { ListEntity, WeatherCity } from "@/app/types";
 import _ from "lodash";
 import { DateTime } from "luxon";
 
-export function arrayRandomItem<C extends unknown[]>(arr: C) {
-    const randomItem = Math.floor(Math.random() * (arr.length - 0) + 0);
-    return arr[randomItem] as C[number]
-}
-
 export function mapCityData(city: WeatherCity, list: ListEntity[]): CurrentCityType {
     const now = DateTime.local();
 
@@ -16,7 +11,6 @@ export function mapCityData(city: WeatherCity, list: ListEntity[]): CurrentCityT
 
         return date.day !== now.day
     });
-
 
     const mappedItems = filteredList.reduce((acc, item) => {
         const date = DateTime.fromSQL(item.dt_txt);
@@ -68,6 +62,7 @@ export function mapCityData(city: WeatherCity, list: ListEntity[]): CurrentCityT
         name: city.name,
         country: city.sys.country,
         humidity: city.main.humidity,
+        feels_like: Math.round(city.main.feels_like),
         clouds: {
             all: city.clouds.all
         },
@@ -78,18 +73,18 @@ export function mapCityData(city: WeatherCity, list: ListEntity[]): CurrentCityT
             wind: city.wind
         },
         temp: {
-            current: Number(city.main.temp.toFixed(2)),
-            max: Number(city.main.temp_max.toFixed(2)),
-            min: Number(city.main.temp_min.toFixed(2))
+            current: Math.round(city.main.temp),
+            max: Math.round(city.main.temp_max),
+            min: Math.round(city.main.temp_min)
         },
         list: Array.from(mappedItems.values())
     }
 }
 
 export function getWeatherPeriod() {
-    const now = DateTime.local({ zone: "America/Sao_Paulo"});
+    const now = DateTime.local({ zone: "America/Sao_Paulo" });
     const nowFormat = now.toFormat("HH:mm");
-    
+
     if ((nowFormat >= "18:00" || nowFormat < "06:00")) {
         return "night"
     }

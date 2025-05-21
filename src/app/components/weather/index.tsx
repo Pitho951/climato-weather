@@ -22,7 +22,7 @@ function WeatherComponent() {
             <Sun />
             <Moon />
 
-            <img ref={dailyBg} className={`w-100 h-100 weatherBackground preventActions ${weather === 'night' ? 'deactive' : ''}`} src="/assets/images/backgrounds/desktop-morning-background.jpg" />
+            <img ref={dailyBg} className={`w-100 h-100 weatherBackground preventActions ${weather === 'night' ? 'disable' : ''}`} src="/assets/images/backgrounds/desktop-morning-background.jpg" />
             <img ref={nightBg} className={`w-100 h-100 weatherBackground preventActions`} src="/assets/images/backgrounds/desktop-night-background.jpg" />
         </div>
     )

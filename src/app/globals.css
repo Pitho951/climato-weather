@@ -56,7 +56,7 @@ img {
   opacity: 1;
 }
 
-.weatherBackground.deactive {
+.weatherBackground.disable {
   opacity: 0;
 }
 
