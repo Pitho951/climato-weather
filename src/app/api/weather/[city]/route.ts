@@ -1,5 +1,5 @@
 import { mapCityData } from "@/app/utils/functions";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 
 

@@ -11,7 +11,6 @@ import _ from "lodash";
 
 
 export function Home({ city }: { city: CurrentCityType | null }) {
-    const [weather, setWeather] = useState<"daily" | "night">("daily");
     const [cityName, setCityName] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [currentCity, setCurrentCity] = useState<CurrentCityType | null>(city);

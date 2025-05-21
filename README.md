@@ -59,9 +59,11 @@ yarn install
 
 3. Configure a variável de ambiente para a API (crie um arquivo .env.local):
 
+```env
 NEXT_PUBLIC_API_URL="http://localhost:3000/api"
 OPEN_WEATHER_API_BASE_URL=https://api.openweathermap.org/data/2.5
 OPEN_WEATHER_API_KEY="your OpenWeather API key"
+```
 
 4. Rode o servidor de desenvolvimento:
 ```bash
@@ -73,5 +75,12 @@ yarn dev
 5. Abra http://localhost:3000 no navegador.
 
 
-📝 Autor
-Kaique Fabricio — feito com amor ❤️
+## 👤 Autor
+
+Feito com ❤️ por [Kaique Fabrício](https://github.com/Pitho951)
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).

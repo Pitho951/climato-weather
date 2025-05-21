@@ -1,7 +1,6 @@
 'use client';
 
 import { getWeatherPeriod } from "@/app/utils/functions";
-import { DateTime } from "luxon";
 import { createContext, useCallback, useEffect, useRef, useState } from "react";
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

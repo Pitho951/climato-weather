@@ -7,7 +7,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 export function Cloud({
     index
 }: CloudProps) {
-    const [cloudNumber, setCloudNumber] = useState(Math.floor(Math.random() * (2 - 1) + 1));
+    const [cloudNumber] = useState(Math.floor(Math.random() * (2 - 1) + 1));
 
     const direction = useRef(index % 2);
     const scale = useRef(2 / (index + 1) * 2);
@@ -39,7 +39,7 @@ export function Cloud({
 
     const getRandomTop = useCallback(() => {
         return (index + 1) * _.random(4, 2);
-    }, []);
+    }, [index]);
 
     const regenerate = useCallback(() => {
         const cloudElement = cloudRef.current;
@@ -52,7 +52,7 @@ export function Cloud({
             cloudElement.style.left = `${axisX.current}px`
         }
 
-    }, []);
+    }, [resetAxisX]);
 
     useEffect(() => {
         setTimeout(() => {
@@ -85,7 +85,7 @@ export function Cloud({
                 requestAnimationFrame(animate);
             }
         }, index * 1000);
-    }, [direction, cloudRef]);
+    }, [direction, cloudRef, getXSpeed, index, isOut, regenerate]);
 
     return (
         <div

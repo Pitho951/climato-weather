@@ -39,13 +39,6 @@ function DaySwiperDescriptionComponent({
             return Math.max(...hours.flatMap(item => item.temp.max))
         }, [hours]);
 
-        useEffect(() => {
-            if (chartRef.current) {
-                // chartRef.current.data.datasets[0].backgroundColor = getDayColor();
-                // chartRef.current.update();
-            }
-
-        }, [chartRef, weather]);
 
         useEffect(() => {
             const canva = canvaRef.current;
@@ -132,7 +125,7 @@ function DaySwiperDescriptionComponent({
                     </div>
                     <div className="d-flex align-center justify-content-center w-25"
                     >
-                        <img src={`https://openweathermap.org/img/wn/${itemHour.current.weather.icon}.png`} />
+                        <img src={`https://openweathermap.org/img/wn/${itemHour.current.weather.icon}.png`} alt="Icone de clima" />
                     </div>
                 </div>
                 <div className="text-black col-12 col-md-6 gap-2 gap-md-0 d-flex flex-row flex-md-column justify-content-center">
@@ -151,7 +144,8 @@ function DaySwiperDescriptionComponent({
                 <SwiperItem item={item} key={item.dayDescription} />
             </SwiperSlide>
         })
-    }, [weather]);
+    }, [weather, SwiperItem, data]);
+
     return (
         <Swiper
             modules={[

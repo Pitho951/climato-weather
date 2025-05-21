@@ -1,5 +1,5 @@
-import { CurrentCityType, ListType, TempType } from "@/app/page";
-import { ListEntity } from "@/app/types";
+import { CurrentCityType, ListType } from "@/app/page";
+import { ListEntity, WeatherCity } from "@/app/types";
 import _ from "lodash";
 import { DateTime } from "luxon";
 
@@ -8,7 +8,7 @@ export function arrayRandomItem<C extends unknown[]>(arr: C) {
     return arr[randomItem] as C[number]
 }
 
-export function mapCityData(city: any, list: ListEntity[]): CurrentCityType {
+export function mapCityData(city: WeatherCity, list: ListEntity[]): CurrentCityType {
     const now = DateTime.local();
 
     const filteredList = list.filter((item) => {
@@ -95,11 +95,4 @@ export function getWeatherPeriod() {
     } 
     
     return "day";
-}
-
-type MapCityDataListParameter = {
-    dt_txt: string,
-    weather: any[],
-    wind: any,
-    main: any
 }
