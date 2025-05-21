@@ -29,7 +29,17 @@ function DaySwiperDescriptionComponent({
     } = useContext(AppContext);
 
     const getDayColor = useCallback(() => {
-        return weather === 'night' ? 'rgb(12, 24, 50)' : 'rgb(213, 162, 115)'
+        if (weather === 'day') {
+            return {
+                borderColor: "orange",
+                backgroundColor: "rgb(213, 162, 115)"
+            }
+        }
+
+        return {
+            borderColor: "#0C1832",
+            backgroundColor: "rgb(12, 24, 50)"
+        }
     }, [weather]);
 
     const ItemCanvas = ({ hours }: { hours: ListType['hours'] }) => {
@@ -45,7 +55,7 @@ function DaySwiperDescriptionComponent({
 
             if (ctx) {
                 const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-                gradient.addColorStop(0, getDayColor());
+                gradient.addColorStop(0, getDayColor().backgroundColor);
                 gradient.addColorStop(1, 'transparent');
 
                 return new Chart(canva, {
@@ -90,7 +100,7 @@ function DaySwiperDescriptionComponent({
                             data: hours.map(item => item.temp.current),
                             fill: true,
                             backgroundColor: gradient,
-                            borderColor: "#0C1832",
+                            borderColor: getDayColor().borderColor,
                             tension: 0.3
                         }]
                     }
