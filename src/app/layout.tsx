@@ -27,14 +27,14 @@ export default function RootLayout({
     <html lang="pt">
       <head>
         <meta name="viewport" content="width=device-width,  initial-scale=1.0" />
-        <link rel="icon" type="image/png" href="/assets/images/logo.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
         <meta property="og:title" content="Climato" />
         <meta property="og:type" content="image/png" />
         <meta property="og:url" content={"https://climato-weather.vercel.app/assets/images/logo.png"} />
         <meta property="og:image" content="https://climato-weather.vercel.app/assets/images/logo.png" />
+        <link rel="icon" type="image/png" href="/assets/images/logo.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <AppProvider>
