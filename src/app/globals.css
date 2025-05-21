@@ -106,7 +106,7 @@ img {
 }
 
 .forecastContainer {
-    height: 400px;
+    max-height: 400px;
     background-color: #F8F9FA;
     border-radius: 5px;
 }
@@ -187,7 +187,7 @@ img {
   }
 }
 
-@media screen and (min-width: 1024) {
+@media screen and (min-width: 1024px) {
     .infoContainer {
         width: 50%;
     }
