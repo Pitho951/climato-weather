@@ -1,6 +1,6 @@
 'use client';
 
-import _ from "lodash";
+import _, { cloneDeep } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 
@@ -48,7 +48,7 @@ export function Cloud({
             resetAxisX();
             const cloudNumber = Math.floor(_.random(2, 1));
             cloudElement.style.backgroundImage = `url(/assets/images/clouds/cloud_${cloudNumber}.webp)`;
-            cloudElement.style.opacity = `0`;
+            cloudElement.style.top = `${getRandomTop()}em`
             cloudElement.style.left = `${axisX.current}px`
         }
 

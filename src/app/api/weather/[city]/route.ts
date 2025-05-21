@@ -23,9 +23,14 @@ export async function GET(
                 const city = mapCityData(currentForecast, data.list);
 
                 return NextResponse.json({
+                    status: 200,
                     city
                 })
             }
         }
     }
+
+    return NextResponse.json({
+        status: 404
+    })
 }

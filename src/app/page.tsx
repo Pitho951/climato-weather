@@ -19,7 +19,6 @@ export default async function Page() {
   } catch (error) {
     console.error("Erro ao buscar dados da API:", error);
 
-    // Você pode renderizar uma tela de erro customizada ou redirecionar
     return <ErrorComponent />
   }
 }
