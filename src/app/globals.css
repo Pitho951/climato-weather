@@ -29,6 +29,10 @@ img {
   display: block;
 }
 
+.logo {
+  border-radius: .625rem;
+}
+
 .main {
   height: 100%;
   min-height: 100%;
@@ -77,86 +81,95 @@ img {
 }
 
 .sun {
-  width: 200px;
-  animation: sunBrightness 3s infinite alternate-reverse, astroEnter 4s
+  width: 12.25rem;
 }
 
+.sun.enter {
+  animation: sunBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyEnter 4s forwards ease;
+}
+
+.sun.leave {
+  animation: sunBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyLeave 4s forwards ease;
+}
 
 .moon {
-  width: 150px;
-  animation: moonBrightness 6s infinite alternate-reverse, astroEnter 4s;
+  width: 9.37rem;
 }
 
-.astroEnter {
-  animation: astroEnter 4s;
+.moon.enter {
+  animation: moonBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyEnter 4s forwards ease;
+}
+
+.moon.leave {
+  animation: sunBmoonBrightnessightness 3s infinite alternate-reverse ease-in-out, celestialBodyLeave 4s forwards ease;
 }
 
 .container {
-    height: 100%;
+  height: 100%;
 }
 
 .infoContainer {
-    width: 100%;
-    margin: 0 auto;
-    z-index: 999 !important;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 999 !important;
 }
 
 .textShadow {
-    text-shadow: 1px 2px 2px rgba(0, 0, 0, .4);
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, .4);
 }
 
 .forecastContainer {
-    max-height: 400px;
-    background-color: #F8F9FA;
-    border-radius: 5px;
+  max-height: 25rem;
+  background-color: #F8F9FA;
+  border-radius: .312rem;
 }
 
 .slide {
-    padding: 1rem 3rem;
+  padding: 1rem 3rem;
 }
 
 .display {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .itemDisplayInfo {
-    background-image: linear-gradient(to bottom left,  transparent, rgba(145, 173, 196) 80%) ;
-    border-radius: 10px;
-    padding: .625rem;
-    display: flex;
-    justify-content: space-between;
+  background-image: linear-gradient(to bottom left, transparent, rgba(145, 173, 196) 80%);
+  border-radius: .625rem;
+  padding: .625rem;
+  display: flex;
+  justify-content: space-between;
 }
 
-@keyframes rightMovingCloud {
-  0% {
-    right: 130%;
-  }
-
-  100% {
-    right: -30%;
-  }
+.celestialBodyEnter {
+  animation: celestialBodyEnter 4s;
 }
 
-@keyframes leftMovingCloud {
-  0% {
-    left: 130%;
-  }
-
-  100% {
-    left: -30%;
-  }
+.celestialBodyLeave {
+  animation: celestialBodyLeave 4s;
 }
 
 
-@keyframes astroEnter {
+@keyframes celestialBodyEnter {
   from {
-    top: 45%;
-    left: 140%;
+    top: 100%;
+    left: 90%;
   }
 
   to {
     top: 15%;
     left: 80%;
+  }
+}
+
+@keyframes celestialBodyLeave {
+  from {
+    top: 15%;
+    left: 80%;
+  }
+
+  to {
+    top: -100%;
+    left: 70%;
   }
 }
 
@@ -176,7 +189,7 @@ img {
   }
 
   to {
-    filter: drop-shadow(0px 0px 150px rgb(255, 217, 0));
+    filter: drop-shadow(0px 0px 300px rgb(255, 217, 0));
   }
 }
 
@@ -188,7 +201,7 @@ img {
 }
 
 @media screen and (min-width: 1024px) {
-    .infoContainer {
-        width: 50%;
-    }
+  .infoContainer {
+    width: 50%;
+  }
 }

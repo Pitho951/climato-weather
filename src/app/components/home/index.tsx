@@ -61,7 +61,7 @@ export function Home({ city }: { city: CurrentCityType | null }) {
                             currentCity &&
                             <div className="d-flex justify-content-between align-items-end mb-2 ">
                                 <p className={`fs-1 m-0 textShadow`}>{currentCity.name} - {currentCity.country}</p>
-                                <img  src="/assets/images/logo.png" width={100} />
+                                <img  src="/assets/images/logo.png" width={80} style={{ borderRadius: 10}} />
                             </div>
                         }
                         <div className={`d-flex gap-2`}>

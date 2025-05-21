@@ -92,7 +92,12 @@ export function getWeatherPeriod() {
 
     if ((nowFormat >= "18:00" || nowFormat < "06:00")) {
         return "night"
-    } 
-    
+    }
+
     return "day";
+}
+
+
+export function getIsMobile() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent);
 }

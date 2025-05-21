@@ -24,7 +24,8 @@ function DaySwiperDescriptionComponent({
     data
 }: DaySwiperDescriptionProps) {
     const {
-        weather
+        weather,
+        isMobile
     } = useContext(AppContext);
 
     const getDayColor = useCallback(() => {
@@ -107,14 +108,14 @@ function DaySwiperDescriptionComponent({
 
         }, []);
 
-        return <canvas ref={canvaRef} height={80}></canvas>
+        return <canvas ref={canvaRef} height={isMobile ? 150 : 80}></canvas>
     }
 
     const SwiperItem = ({ item }: { item: ListType }) => {
         const itemHour = useRef(item.hours[0]);
 
         return <React.Fragment key={item.dayDescription}>
-            <div className="row">
+            <div className="row mb-2">
                 <div className={`itemDisplayInfo col-12 col-md-6`}>
                     <div>
                         <h4 className={`textShadow`}>{item.dayDescription} </h4>
@@ -128,10 +129,10 @@ function DaySwiperDescriptionComponent({
                         <img src={`https://openweathermap.org/img/wn/${itemHour.current.weather.icon}.png`} alt="Icone de clima" />
                     </div>
                 </div>
-                <div className="text-black col-12 col-md-6 gap-2 gap-md-0 d-flex flex-row flex-md-column justify-content-center">
+                <div className="text-black col-12 col-md-6 gap-2 gap-md-0 d-flex flex-row flex-md-column justify-content-around justify-content-md-center">
                     <p className="m-0">{_.words(itemHour.current.weather.description).map(_.capitalize).join(" ")}</p>
                     <p className="m-0">Ventos de {itemHour.current.weather.wind.speed}km/h</p>
-                    <p className="m-0">Céu com {itemHour.current.clouds.all}% de nuvens</p>
+                    <p className="m-0">{itemHour.current.clouds.all}% de nuvens</p>
                 </div>
             </div>
             <ItemCanvas hours={item.hours} />
