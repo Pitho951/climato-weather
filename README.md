@@ -2,7 +2,7 @@
 
 **Climato** é um aplicativo web simples de clima, desenvolvido como projeto de portfólio. Ele permite buscar cidades e visualizar as condições climáticas em tempo real usando a [OpenWeather API](https://openweathermap.org/api).
 
-![Climato preview](https://via.placeholder.com/800x400?text=Screenshot+do+Climato) 
+![Climato preview](https://climato-weather.vercel.app/assets/images/logo.png) 
 
 ---
 
@@ -24,7 +24,7 @@
 ## 📸 Demonstração
 
 Você pode testar o app aqui:  
-👉 [https://seulink.vercel.app](https://seulink.vercel.app)
+👉 [https://climato-weather.vercel.app/](https://climato-weather.vercel.app/)
 
 ---
 
