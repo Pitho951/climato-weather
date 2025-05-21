@@ -1,46 +1,77 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌤️ Climato
 
-## Getting Started
+**Climato** é um aplicativo web simples de clima, desenvolvido como projeto de portfólio. Ele permite buscar cidades e visualizar as condições climáticas em tempo real usando a [OpenWeather API](https://openweathermap.org/api).
 
-First, run the development server:
+![Climato preview](https://via.placeholder.com/800x400?text=Screenshot+do+Climato) 
+
+---
+
+## 🚀 Tecnologias utilizadas
+
+- Next.js 15  
+- React 19  
+- TypeScript  
+- React Bootstrap  
+- Chart.js  
+- FontAwesome  
+- Lodash  
+- Luxon  
+- Swiper  
+- OpenWeather API  
+
+---
+
+## 📸 Demonstração
+
+Você pode testar o app aqui:  
+👉 [https://seulink.vercel.app](https://seulink.vercel.app)
+
+---
+
+## ✨ Funcionalidades
+
+- 🔍 Busca por qualquer cidade do mundo  
+- 📡 Dados atualizados a cada 2hr (Limitação da própria API Free do OpenWeather)
+- 🌡️ Exibe temperatura, sensação térmica, umidade e condição do tempo  
+- 🖼️ Ícones de clima dinâmicos  
+- 📊 Gráficos interativos para visualização das informações climáticas  
+- 📱 Layout responsivo para desktop e mobile  
+- 🏞️ Navegação fluida entre informações usando Swiper  
+
+---
+
+## 🛠️ Como rodar localmente
+
+1. Clone o repositório:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Pitho951/climato-weather.git climato
+cd climato
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instale as dependências
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+# ou
+yarn install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Configure a variável de ambiente para a API (crie um arquivo .env.local):
 
-## Learn More
+NEXT_PUBLIC_API_URL="http://localhost:3000/api"
+OPEN_WEATHER_API_BASE_URL=https://api.openweathermap.org/data/2.5
+OPEN_WEATHER_API_KEY="your OpenWeather API key"
 
-To learn more about Next.js, take a look at the following resources:
+4. Rode o servidor de desenvolvimento:
+```bash
+npm run dev
+# ou
+yarn dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Abra http://localhost:3000 no navegador.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
-# climato-weather
-Climato é um site responsivo de clima feito para portfólio. Ele permite buscar qualquer cidade e exibe dados como temperatura, umidade e condição do tempo em tempo real, utilizando a OpenWeather API.
->>>>>>> 0fd519b235ea25693e79305a6ca5fe5bed0defde
-=======
-# climato-weather
-Climato é um site responsivo de clima feito para portfólio. Ele permite buscar qualquer cidade e exibe dados como temperatura, umidade e condição do tempo em tempo real, utilizando a OpenWeather API.
->>>>>>> 0fd519b235ea25693e79305a6ca5fe5bed0defde
+📝 Autor
+Kaique Fabricio — feito com amor ❤️
