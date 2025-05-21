@@ -2,6 +2,7 @@
 
 
 
+import { ErrorComponent } from "@/app/components/error";
 import { Home } from "@/app/components/home";
 
 export default async function Page() {
@@ -19,7 +20,7 @@ export default async function Page() {
     console.error("Erro ao buscar dados da API:", error);
 
     // Você pode renderizar uma tela de erro customizada ou redirecionar
-    return <div>Erro ao carregar dados. Tente novamente mais tarde.</div>;
+    return <ErrorComponent />
   }
 }
 
