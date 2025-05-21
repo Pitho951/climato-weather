@@ -3,7 +3,7 @@
 
 export interface WeatherCity {
   coord: Coord;
-  weather: WeatherEntity;
+  weather: WeatherEntity[];
   base: string;
   main: Main;
   visibility: number;
