@@ -31,7 +31,7 @@ function WeatherComponent() {
 
 
     return (
-        <div className="weather-container preventActions">
+        <div className="weatherContainer preventActions">
             {clouds}
             {
                 weather === "day" ?

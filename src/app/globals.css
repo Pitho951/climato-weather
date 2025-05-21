@@ -1,29 +1,22 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 html,
 body {
   height: 100%;
+  overflow: hidden !important;
 }
 
 body {
-  color: var(--foreground);
+  color: var(--foreground) !important;
   background: var(--background);
   font-family: "Oswald", Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden !important;
 }
 
 * {
@@ -32,6 +25,9 @@ body {
   margin: 0;
 }
 
+img {
+  display: block;
+}
 
 .main {
   height: 100%;
@@ -39,14 +35,16 @@ body {
   overflow: hidden;
   background-image: url("/assets/images/backgrounds/desktop-night-background.jpg");
   background-size: cover;
+
 }
 
-.weather-container {
+.weatherContainer {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
+  overflow: hidden;
 }
 
 .weatherBackground {
