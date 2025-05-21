@@ -64,6 +64,10 @@ function DaySwiperDescriptionComponent({
                         ChartDataLabels
                     ],
                     options: {
+                        interaction: {
+                            intersect: false,
+                            mode: 'index',
+                        },
                         plugins: {
                             legend: {
                                 display: false
@@ -73,36 +77,55 @@ function DaySwiperDescriptionComponent({
                                 align: 'top',
                                 color: '#000',
                                 font: {
-                                    weight: 'bold'
+                                    weight: 'bold',
                                 },
                                 formatter: (value) => `${value}°`
-                            }
+                            },
+                            tooltip: {
+                                footerFont: { weight: 0 },
+                                callbacks: {
+                                    footer: (toolTipItems) => {
+                                        const options = hours[toolTipItems[0].dataIndex];
+
+                                        return [
+                                            `${options.weather.description}`,
+                                            `Ventos ${options.weather.wind.speed}km/h`,
+                                            `Nuvens ${options.clouds.all}%`
+                                        ]
+                                    }
+                                }
+                            },
+
+
                         },
                         scales: {
                             x: {
                                 grid: {
-                                    display: false
-                                }
+                                    display: false,
+                                },
+
                             },
                             y: {
                                 grid: {
                                     display: false
                                 },
-                                max: getMaxTemp() + 0.5
+                                max: getMaxTemp() + 1
                             }
                         },
-
                     },
                     data: {
                         labels: hours.map(item => item.hour),
-                        datasets: [{
-                            label: "Temperatura",
-                            data: hours.map(item => item.temp.current),
-                            fill: true,
-                            backgroundColor: gradient,
-                            borderColor: getDayColor().borderColor,
-                            tension: 0.3
-                        }]
+                        datasets: [
+                            {
+                                label: "Temperatura",
+                                data: hours.map(item => item.temp.current),
+                                fill: true,
+                                backgroundColor: gradient,
+                                borderColor: getDayColor().borderColor,
+                                tension: 0.3,
+                                extraInfo: []
+                            } as any,
+                        ]
                     }
                 });
             }
@@ -135,7 +158,7 @@ function DaySwiperDescriptionComponent({
                 <div className={`itemDisplayInfo col-12 col-md-6`}>
                     <div>
                         <h4 className={`textShadow`}>{item.dayDescription} </h4>
-                        <div className={`display textShadow d-flex gap-3`}>
+                        <div className={`displayTemp itemDescription textShadow d-flex gap-3`}>
                             <span ><FontAwesomeIcon icon={faCaretUp} color="blue" />{item.temp_max}&deg;</span>
                             <span ><FontAwesomeIcon icon={faCaretDown} color="red" />{item.temp_min}&deg;</span>
                         </div>
@@ -147,8 +170,8 @@ function DaySwiperDescriptionComponent({
                 </div>
                 <div className="text-black col-12 col-md-6 gap-2 gap-md-0 d-flex flex-row flex-md-column justify-content-around justify-content-md-center">
                     <p className="m-0 ">{_.words(itemHour.current.weather.description).map(_.capitalize).join(" ")}</p>
-                    <p className="m-0 ">Ventos de {itemHour.current.weather.wind.speed}km/h</p>
-                    <p className="m-0 ">{itemHour.current.clouds.all}% de nuvens</p>
+                    <p className="m-0 ">Ventos {itemHour.current.weather.wind.speed}km/h</p>
+                    <p className="m-0 ">Nuvens {itemHour.current.clouds.all}%</p>
                 </div>
             </div>
             <ItemCanvas hours={item.hours} />

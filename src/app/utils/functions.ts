@@ -43,7 +43,6 @@ export function mapCityData(city: WeatherCity, list: ListEntity[]): CurrentCityT
 
         if (dayItem) {
             dayItem.hours.push(hour);
-            console.log(dayItem.temp_max, hour.temp.max)
             dayItem.temp_max = Math.max(dayItem.temp_max, hour.temp.max);
             dayItem.temp_min = Math.min(dayItem.temp_min, hour.temp.min);
 

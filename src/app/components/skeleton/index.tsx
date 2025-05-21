@@ -7,7 +7,7 @@ export function Skeleton({
 }: SkeletonProps) {
     return (
         isLoading ?
-            <Placeholder as={props?.as ?? 'span'} animation={props?.animation ?? "glow"} >
+            <Placeholder as={props?.as ?? 'span'} animation={props?.animation ?? "glow"}>
                 <Placeholder {...props} />
             </Placeholder>
             :

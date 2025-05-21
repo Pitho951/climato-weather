@@ -5,17 +5,24 @@ import { SearchBar } from "@/app/components/search-bar";
 import { Skeleton } from "@/app/components/skeleton";
 import { Weather } from "@/app/components/weather";
 import { CurrentCityType } from "@/app/page";
-import React, { useCallback, useMemo, useState } from "react";
-import { Alert, Button, Collapse } from "react-bootstrap";
+import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { Alert, Button, Collapse, Placeholder } from "react-bootstrap";
 import _ from "lodash";
 import { DateTime } from "luxon";
+import { AppContext } from "@/app/context/app_context";
 
 
-export function Home({ city }: { city: CurrentCityType | null }) {
+export function Home({ city: initialCity }: { city: CurrentCityType | null }) {
+
+    const {
+        city,
+        setCity
+    } = useContext(AppContext);
+
     const [cityName, setCityName] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [cityNotFound, setCityNotFound] = useState("");
-    const [currentCity, setCurrentCity] = useState<CurrentCityType | null>(city);
+    const [currentCity, setCurrentCity] = useState<CurrentCityType | null>(initialCity);
     const [today] = useState(DateTime.local());
 
     const getCityForecast = useCallback(async () => {
@@ -43,25 +50,44 @@ export function Home({ city }: { city: CurrentCityType | null }) {
     }, [cityName]);
 
     const display = useMemo(() => {
-        if (currentCity) {
-            return <div className="mb-5 text-center">
-                <div className={`display textShadow text-center `} >
-                    <Skeleton isLoading={isLoading} xs={8} lg={2}>
-                        <p className="m-0 fs-5"  >Hoje, {today.toFormat("dd/MM")}</p>
-                        <span style={{ fontSize: '4rem' }} >{Number(currentCity.temp.current.toFixed(0))}&deg;C</span>
-                    </Skeleton>
-                </div>
-                <Skeleton isLoading={isLoading} xs={10} lg={4} size="lg">
-                    <p className={`fs-5 m-0 textShadow `} >Máxima: {Number(currentCity.temp.max.toFixed(0))}&deg;  Miníma: {Number(currentCity.temp.min.toFixed(0))}&deg;</p>
-                </Skeleton>
-                <p className={`text-center textShadow`} >{_.words(currentCity.weather.description).map(_.capitalize).join(" ")} | Ventos {currentCity.weather.wind.speed}km/h | Nuvens {currentCity.clouds.all}%</p>
-            </div>
-        }
+        return <div className="mb-5 text-center">
+            {
+                isLoading ?
+                    <div className="display m-auto d-flex flex-column align-items-center justify-content-center">
+                        <div className="w-100 h-100">
+                            <div className="mb-2">
+                                <Placeholder xs={4} as="div" />
+                            </div>
+                            <div className="mb-2">
+                                <Placeholder xs={6} as="div" />
+                            </div>
+                            <Placeholder xs={8} as="div" />
+                            <Placeholder xs={10} as="div" />
+                        </div>
+                    </div>
+                    :
 
-        return null;
+                    <div className="display textShadow d-flex flex-column align-items-center justify-content-center  m-auto">
+                        <div>
+                            <p className="m-0 fs-5"  >Hoje, {today.toFormat("dd/MM")}</p>
+                            <span className="displayTemp">{Number(currentCity?.temp.current.toFixed(0))}&deg;C</span>
+                        </div>
+                        <p className={`fs-5 m-0 textShadow `} >Máxima: {Number(currentCity?.temp.max.toFixed(0))}&deg;  Miníma: {Number(currentCity?.temp.min.toFixed(0))}&deg;</p>
+                        <p className={`text-center textShadow`} >{_.words(currentCity?.weather.description).map(_.capitalize).join(" ")} | Ventos {currentCity?.weather.wind.speed}km/h | Nuvens {currentCity?.clouds.all}%</p>
+                    </div>
+
+            }
+
+        </div>
+
     }, [currentCity, isLoading]);
 
+    useEffect(() => {
+        setCity(currentCity);
+    }, [currentCity]);
+
     return (
+        city &&
         <React.Fragment>
             <div className={`h-100 d-flex flex-column justify-content-end p-2`} >
                 <div className={`infoContainer`}>
@@ -93,7 +119,6 @@ export function Home({ city }: { city: CurrentCityType | null }) {
                             currentCity?.list ?
                                 <DaySwiperDescription
                                     data={currentCity.list}
-
                                 />
                                 :
                                 <Skeleton isLoading={true} bg="primary" />

@@ -60,19 +60,12 @@ img {
   opacity: 0;
 }
 
-.cityBackground {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  z-index: 2;
-}
-
 .sun,
 .moon {
   position: absolute;
   left: 80%;
-  top: 15%;
-  z-index: 0;
+  top: 120%;
+  z-index: 1;
 }
 
 .preventActions {
@@ -85,11 +78,11 @@ img {
 }
 
 .sun.enter {
-  animation: sunBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyEnter 4s forwards ease;
+  animation: sunBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyEnter 4s forwards ;
 }
 
 .sun.leave {
-  animation: sunBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyLeave 4s forwards ease;
+  animation: sunBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyLeave 4s forwards ;
 }
 
 .moon {
@@ -97,11 +90,11 @@ img {
 }
 
 .moon.enter {
-  animation: moonBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyEnter 4s forwards ease;
+  animation: moonBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyEnter 4s forwards ;
 }
 
 .moon.leave {
-  animation: sunBmoonBrightnessightness 3s infinite alternate-reverse ease-in-out, celestialBodyLeave 4s forwards ease;
+  animation: sunBmoonBrightnessightness 3s infinite alternate-reverse ease-in-out, celestialBodyLeave 4s forwards ;
 }
 
 .container {
@@ -119,7 +112,7 @@ img {
 }
 
 .forecastContainer {
-  max-height: 25rem;
+  height: 25rem;
   background-color: #F8F9FA;
   border-radius: .312rem;
 }
@@ -129,6 +122,18 @@ img {
 }
 
 .display {
+  border-radius: 2rem;
+  backdrop-filter: blur(2);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
+  width: 22rem;
+  min-height: 12.50rem;
+}
+
+.displayTemp {
+  font-size: 4rem;
+}
+
+.displayTemp.itemDescription {
   font-size: 2rem;
 }
 
@@ -148,7 +153,7 @@ img {
   animation: celestialBodyLeave 4s;
 }
 
-.errorContainer{
+.errorContainer {
   width: 100%;
   height: 100%;
 }
@@ -160,7 +165,7 @@ img {
 
 @keyframes celestialBodyEnter {
   from {
-    top: 100%;
+    top: 120%;
     left: 90%;
   }
 

@@ -1,22 +1,31 @@
 'use client';
 
+import { AppContext } from "@/app/context/app_context";
+import { animator } from "chart.js";
+import { AnimatePresence, motion } from "framer-motion";
 import _, { cloneDeep } from "lodash";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef, useState, useTransition } from "react";
 
 
 export function Cloud({
-    index
+    index,
+    show
 }: CloudProps) {
-    const [cloudNumber] = useState(Math.floor(Math.random() * (2 - 1) + 1));
+    const {
+        city
+    } = useContext(AppContext);
 
+    const startTime = useRef<number>(null);
     const direction = useRef(index % 2);
-    const scale = useRef(2 / (index + 1) * 2);
-    const speed = useRef(10 * scale.current);
-    const cloudWidth = useRef(200 * scale.current);
-    const windowInnerWidth = useRef(window.innerWidth);
-    const startAxisX = useRef(Math.floor(_.random(windowInnerWidth.current, 0)))
-    const axisX = useRef(direction.current === 0 ? -startAxisX.current : startAxisX.current + cloudWidth.current);
+    const scale = useRef(index * 0.1);
+    const width = useRef(200 * scale.current);
+    const startX = useRef(Math.floor(_.random(window.innerWidth, 0)))
+    const axisX = useRef(direction.current === 0 ? -startX.current : startX.current);
     const cloudRef = useRef<HTMLImageElement | null>(null);
+
+    const getCloudNumber = useCallback(() => {
+        return _.random(2, 1);
+    }, []);
 
     const isOut = useCallback(() => {
         const cloudElement = cloudRef.current;
@@ -30,86 +39,90 @@ export function Cloud({
     }, []);
 
     const resetAxisX = useCallback(() => {
-        axisX.current = direction.current === 0 ? -startAxisX.current : startAxisX.current + cloudWidth.current
+        return direction.current === 0 ? -startX.current : startX.current
     }, []);
 
-    const getXSpeed = useCallback((delta: number) => {
-        return (direction.current === 0 ? speed.current : -speed.current) * delta
-    }, [speed]);
+    const getXSpeed = useCallback(() => {
+        return city.weather.wind.speed
+    }, [city]);
 
     const getRandomTop = useCallback(() => {
-        return (index + 1) * _.random(4, 2);
+        return _.random(25, 2);
     }, [index]);
 
     const regenerate = useCallback(() => {
         const cloudElement = cloudRef.current;
 
         if (cloudElement) {
-            resetAxisX();
-            const cloudNumber = Math.floor(_.random(2, 1));
-            cloudElement.style.backgroundImage = `url(/assets/images/clouds/cloud_${cloudNumber}.webp)`;
             cloudElement.style.top = `${getRandomTop()}em`
-            cloudElement.style.left = `${axisX.current}px`
+            cloudElement.style.left = `${resetAxisX()}px`
         }
 
     }, [resetAxisX]);
 
+    const motionCloud = useMemo(() => {
+        return show &&
+            <motion.div
+                ref={cloudRef}
+                key={`motion`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: scale.current }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 4 }}
+                style={{
+                    position: 'absolute',
+                    width: `${width.current}px`,
+                    height: 50,
+                    top: `${getRandomTop()}em`,
+                    left: axisX.current,
+                    transform: `scale(${scale}) `,
+                    pointerEvents: 'none',
+                    backgroundImage: `url(/assets/images/clouds/cloud_${getCloudNumber()}.webp)`,
+                    backgroundSize: 'contain',
+                    backgroundRepeat: "no-repeat",
+                    zIndex: 2
+                }}
+            />
+    }, [show])
+
     useEffect(() => {
-        setTimeout(() => {
+        let animationId: number;
+        let firstIteration = true;
+
+        const animate = (now: number) => {
             const cloudElement = cloudRef.current;
 
             if (cloudElement) {
-                let lastTime = performance.now();
-
-                const animate = (now: number) => {
-                    const opacity = Number(cloudElement.style.opacity);
-
-                    if (!opacity) {
-                        cloudElement.style.opacity = `${scale.current}`;
-                    }
-
-                    const delta = (now - lastTime) / 1000;
-                    axisX.current += getXSpeed(delta);
-
-                    cloudRef.current!.style.left = `${axisX.current}px`
-
-                    lastTime = now;
-                    requestAnimationFrame(animate)
-
-                    if (isOut()) {
-                        regenerate();
-                        requestAnimationFrame(animate)
-                    }
+                if (startTime.current === null) {
+                    startTime.current = now;
                 }
 
-                requestAnimationFrame(animate);
+                const delta = (now - startTime.current) / 1000;
+                const speed = (getXSpeed() * delta);
+
+                cloudElement.style.left = `${axisX.current + speed}px`;
+
+                animationId = requestAnimationFrame(animate);
+                if (firstIteration) firstIteration = false;
             }
-        }, index * 1000);
-    }, [direction, cloudRef, getXSpeed, index, isOut, regenerate]);
+        }
+
+        animationId = requestAnimationFrame(animate);
+
+        return () => {
+            cancelAnimationFrame(animationId);
+        }
+    }, [direction, getXSpeed, show]);
 
     return (
-        <div
-            ref={cloudRef}
-            style={{
-                position: 'absolute',
-                width: `${cloudWidth.current}px`,
-                height: 50,
-                top: `${getRandomTop()}rem`,
-                left: `0`,
-                transform: `scale(${scale}) `,
-                pointerEvents: 'none',
-                backgroundImage: `url(/assets/images/clouds/cloud_${cloudNumber}.webp)`,
-                backgroundSize: 'contain',
-                backgroundRepeat: "no-repeat",
-                zIndex: 1,
-                opacity: 0,
-                transition: "opacity 4s"
-            }}
-        />
+        <AnimatePresence initial={!show}>
+            {motionCloud}
+        </AnimatePresence>
     )
 }
 
 
 type CloudProps = {
-    index: number
+    index: number;
+    show: boolean;
 }

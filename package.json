@@ -17,6 +17,7 @@
     "bootstrap": "^5.3.6",
     "chart.js": "^4.4.9",
     "chartjs-plugin-datalabels": "^2.2.0",
+    "framer-motion": "^12.12.1",
     "lodash": "^4.17.21",
     "luxon": "^3.6.1",
     "next": "15.3.2",
