@@ -29,7 +29,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width,  initial-scale=1.0" />
         <meta property="og:title" content="Climato" />
         <meta property="og:type" content="image/png" />
-        <meta property="og:url" content={"https://climato-weather.vercel.app/assets/images/logo.png"} />
+        <meta property="og:url" content={"https://climato-weather.vercel.app/assets/images"} />
         <meta property="og:image" content="https://climato-weather.vercel.app/assets/images/logo.png" />
         <link rel="icon" type="image/png" href="/assets/images/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

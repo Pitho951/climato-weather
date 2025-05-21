@@ -146,7 +146,7 @@ function DaySwiperDescriptionComponent({
 
         }, []);
 
-        return <canvas ref={canvaRef} height={isMobile ? 150 : 80}></canvas>
+        return <canvas ref={canvaRef} height={isMobile ? 150 : 70}></canvas>
     }
 
     const SwiperItem = ({ item }: { item: ListType }) => {

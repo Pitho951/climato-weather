@@ -15,6 +15,7 @@ import { Alert, Button, Collapse, Placeholder } from "react-bootstrap";
 export function Home({ city: initialCity }: { city: CurrentCityType | null }) {
 
     const {
+        weather,
         city,
         setCity
     } = useContext(AppContext);
@@ -50,7 +51,7 @@ export function Home({ city: initialCity }: { city: CurrentCityType | null }) {
     }, [cityName]);
 
     const display = useMemo(() => {
-        return <div className="mb-5 text-center">
+        return <div className="mb-4 text-center">
             {
                 isLoading ?
                     <div className="display m-auto d-flex flex-column align-items-center justify-content-center">
@@ -67,20 +68,27 @@ export function Home({ city: initialCity }: { city: CurrentCityType | null }) {
                     </div>
                     :
 
-                    <div className="display textShadow d-flex flex-column align-items-center justify-content-center  m-auto">
-                        <div>
+                    <div className="display   d-flex flex-column align-items-center justify-content-center  m-auto overflow-hidden">
+                        <div className="textShadow">
                             <p className="m-0 fs-5"  >Hoje, {today.toFormat("dd/MM")}</p>
-                            <span className="displayTemp">{Number(currentCity?.temp.current.toFixed(0))}&deg;C</span>
+                            <p className="m-0 displayTemp">{Number(currentCity?.temp.current.toFixed(0))}&deg;C</p>
+                            <p className={`fs-5 m-0 textShadow `} >Máxima: {Number(currentCity?.temp.max.toFixed(0))}&deg;  Miníma: {Number(currentCity?.temp.min.toFixed(0))}&deg;</p>
                         </div>
-                        <p className={`fs-5 m-0 textShadow `} >Máxima: {Number(currentCity?.temp.max.toFixed(0))}&deg;  Miníma: {Number(currentCity?.temp.min.toFixed(0))}&deg;</p>
-                        <p className={`text-center textShadow`} >{_.words(currentCity?.weather.description).map(_.capitalize).join(" ")} | Ventos {currentCity?.weather.wind.speed}km/h | Nuvens {currentCity?.clouds.all}%</p>
+                        <div className={`w-100 py-1 mt-1 ${weather === "day" ? "text-black" : "text-white textShadow"}`}>
+                            <div className={`d-flex justify-content-center gap-2`} >
+                                <span >{_.words(currentCity?.weather.description).map(_.capitalize).join(" ")} |</span>
+                                <span >Ventos {currentCity?.weather.wind.speed}km/h</span>
+                                <span >| Nuvens {currentCity?.clouds.all}%</span>
+                            </div>
+                            <p className={`m-0`} >Humidade do ar {currentCity?.humidity}%</p>
+                        </div>
                     </div>
 
             }
 
         </div>
 
-    }, [currentCity, isLoading]);
+    }, [currentCity, isLoading, weather]);
 
     useEffect(() => {
         setCity(currentCity);

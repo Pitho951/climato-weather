@@ -67,6 +67,7 @@ export function mapCityData(city: WeatherCity, list: ListEntity[]): CurrentCityT
     return {
         name: city.name,
         country: city.sys.country,
+        humidity: city.main.humidity,
         clouds: {
             all: city.clouds.all
         },

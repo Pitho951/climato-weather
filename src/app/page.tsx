@@ -28,6 +28,7 @@ export type CurrentCityType = {
   name: string,
   country: string,
   temp: TempType,
+  humidity: number;
   clouds: ListCloudType,
   weather: WeatherType,
   list: ListType[]

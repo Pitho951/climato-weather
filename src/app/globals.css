@@ -78,11 +78,11 @@ img {
 }
 
 .sun.enter {
-  animation: sunBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyEnter 4s forwards ;
+  animation: sunBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyEnter 4s forwards;
 }
 
 .sun.leave {
-  animation: sunBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyLeave 4s forwards ;
+  animation: sunBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyLeave 4s forwards;
 }
 
 .moon {
@@ -90,11 +90,11 @@ img {
 }
 
 .moon.enter {
-  animation: moonBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyEnter 4s forwards ;
+  animation: moonBrightness 3s infinite alternate-reverse ease-in-out, celestialBodyEnter 4s forwards;
 }
 
 .moon.leave {
-  animation: sunBmoonBrightnessightness 3s infinite alternate-reverse ease-in-out, celestialBodyLeave 4s forwards ;
+  animation: sunBmoonBrightnessightness 3s infinite alternate-reverse ease-in-out, celestialBodyLeave 4s forwards;
 }
 
 .container {
@@ -108,11 +108,12 @@ img {
 }
 
 .textShadow {
-  text-shadow: 1px 2px 2px rgba(0, 0, 0, .4);
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, .7);
+  transition: color 2s;
 }
 
 .forecastContainer {
-  height: 25rem;
+  height: 22rem;
   background-color: #F8F9FA;
   border-radius: .312rem;
 }
@@ -128,6 +129,7 @@ img {
   width: 22rem;
   min-height: 12.50rem;
 }
+
 
 .displayTemp {
   font-size: 4rem;
