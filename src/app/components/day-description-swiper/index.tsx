@@ -40,67 +40,73 @@ function DaySwiperDescriptionComponent({
             return Math.max(...hours.flatMap(item => item.temp.max))
         }, [hours]);
 
+        const createAChart = useCallback((canva: HTMLCanvasElement) => {
+            const ctx = canva.getContext('2d');
+
+            if (ctx) {
+                const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                gradient.addColorStop(0, getDayColor());
+                gradient.addColorStop(1, 'transparent');
+
+                return new Chart(canva, {
+                    type: "line",
+                    plugins: [
+                        ChartDataLabels
+                    ],
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            datalabels: {
+                                anchor: 'end',
+                                align: 'top',
+                                color: '#000',
+                                font: {
+                                    weight: 'bold'
+                                },
+                                formatter: (value) => `${value}°`
+                            }
+                        },
+                        scales: {
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    display: false
+                                },
+                                max: getMaxTemp() + 0.5
+                            }
+                        },
+
+                    },
+                    data: {
+                        labels: hours.map(item => item.hour),
+                        datasets: [{
+                            label: "Temperatura",
+                            data: hours.map(item => item.temp.current),
+                            fill: true,
+                            backgroundColor: gradient,
+                            borderColor: "#0C1832",
+                            tension: 0.3
+                        }]
+                    }
+                });
+            }
+
+        }, []);
 
         useEffect(() => {
             const canva = canvaRef.current;
             if (!chartRef.current) {
 
                 if (canva) {
-                    const ctx = canva.getContext('2d');
+                    const chart = createAChart(canva);
 
-                    if (ctx) {
-                        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-                        gradient.addColorStop(0, getDayColor());
-                        gradient.addColorStop(1, 'transparent');
-
-                        const chart = new Chart(canva, {
-                            type: "line",
-                            plugins: [
-                                ChartDataLabels
-                            ],
-                            options: {
-                                plugins: {
-                                    legend: {
-                                        display: false
-                                    },
-                                    datalabels: {
-                                        anchor: 'end',
-                                        align: 'top',
-                                        color: '#000',
-                                        font: {
-                                            weight: 'bold'
-                                        },
-                                        formatter: (value) => `${value}°`
-                                    }
-                                },
-                                scales: {
-                                    x: {
-                                        grid: {
-                                            display: false
-                                        }
-                                    },
-                                    y: {
-                                        grid: {
-                                            display: false
-                                        },
-                                        max: getMaxTemp() + 0.5
-                                    }
-                                },
-
-                            },
-                            data: {
-                                labels: hours.map(item => item.hour),
-                                datasets: [{
-                                    label: "Temperatura",
-                                    data: hours.map(item => item.temp.current),
-                                    fill: true,
-                                    backgroundColor: gradient,
-                                    borderColor: "#0C1832",
-                                    tension: 0.3
-                                }]
-                            }
-                        });
-
+                    if (chart) {
                         chartRef.current = chart;
                     }
                 }
@@ -139,7 +145,7 @@ function DaySwiperDescriptionComponent({
         </React.Fragment>
     }
 
-    const mapped = useMemo(() => {
+    const mappedSlides = useMemo(() => {
         return data.map((item, index) => {
             return <SwiperSlide className={`slide`} key={`${index}-${item.dayDescription}`}>
                 <SwiperItem item={item} key={item.dayDescription} />
@@ -155,9 +161,7 @@ function DaySwiperDescriptionComponent({
             navigation={true}
             className="h-100"
         >
-            {
-                mapped
-            }
+            {mappedSlides}
         </Swiper>
     )
 }
