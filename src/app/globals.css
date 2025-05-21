@@ -1,0 +1,155 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "./page.css";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Oswald", Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden !important;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+.main {
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background-image: url("/assets/images/backgrounds/desktop-night-background.jpg");
+  background-size: cover;
+}
+
+.weather-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.weatherBackground {
+  transition: opacity 5s;
+  opacity: 1;
+}
+
+.weatherBackground.deactive {
+  opacity: 0;
+}
+
+.cityBackground {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  z-index: 2;
+}
+
+.sun,
+.moon {
+  position: absolute;
+  left: 80%;
+  top: 15%;
+  z-index: 0;
+}
+
+.preventActions {
+  pointer-events: none;
+  touch-action: none;
+}
+
+.sun {
+  width: 200px;
+  animation: sunBrightness 3s infinite alternate-reverse, astroEnter 4s
+}
+
+
+.moon {
+  width: 150px;
+  animation: moonBrightness 6s infinite alternate-reverse, astroEnter 4s;
+}
+
+.astroEnter {
+  animation: astroEnter 4s;
+}
+
+@keyframes rightMovingCloud {
+  0% {
+    right: 130%;
+  }
+
+  100% {
+    right: -30%;
+  }
+}
+
+@keyframes leftMovingCloud {
+  0% {
+    left: 130%;
+  }
+
+  100% {
+    left: -30%;
+  }
+}
+
+
+@keyframes astroEnter {
+  from {
+    top: 45%;
+    left: 140%;
+  }
+
+  to {
+    top: 15%;
+    left: 80%;
+  }
+}
+
+@keyframes moonBrightness {
+  from {
+    filter: drop-shadow(0px 0px 50px rgb(255, 255, 255));
+  }
+
+  to {
+    filter: drop-shadow(0px 0px 100px rgb(255, 255, 255));
+  }
+}
+
+@keyframes sunBrightness {
+  from {
+    filter: drop-shadow(0px 0px 100px rgb(255, 230, 0));
+  }
+
+  to {
+    filter: drop-shadow(0px 0px 150px rgb(255, 217, 0));
+  }
+}
+
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
