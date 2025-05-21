@@ -17,6 +17,7 @@
 - Lodash  
 - Luxon  
 - Swiper  
+- Framer-Motion
 - OpenWeather API  
 
 ---
