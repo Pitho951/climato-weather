@@ -13,7 +13,7 @@ export function mapCityData(city: WeatherCity, list: ListEntity[]): CurrentCityT
     });
 
     const mappedItems = filteredList.reduce((acc, item) => {
-        const date = DateTime.fromSQL(item.dt_txt, {locale: "pt-Br"});
+        const date = DateTime.fromSQL(item.dt_txt);
         const dayItem = acc.get(date.day);
         const weather = item.weather[0]
 
@@ -47,7 +47,7 @@ export function mapCityData(city: WeatherCity, list: ListEntity[]): CurrentCityT
         const listItem: ListType = {
             temp_max: hour.temp.max,
             temp_min: hour.temp.min,
-            dayDescription: `${_.capitalize(date.weekdayShort!)} ${date.toFormat("dd/MM")}`,
+            dayDescription: `${_.capitalize(date.setLocale("pt-br").weekdayShort!)} ${date.toFormat("dd/MM")}`,
             hours: [hour]
         }
 
