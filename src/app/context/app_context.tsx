@@ -22,13 +22,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         }
 
         interval.current = setInterval(() => {
-            // updateWeather(getWeatherPeriod());
+            updateWeather(getWeatherPeriod());
             setIsMobile(getIsMobile);
         }, 1000);
 
-        setTimeout(() => {
-            updateWeather("day")
-        }, 20000);
         updateWeather(getWeatherPeriod());
     }, []);
 
