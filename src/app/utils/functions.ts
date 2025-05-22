@@ -13,7 +13,7 @@ export function mapCityData(city: WeatherCity, list: ListEntity[]): CurrentCityT
     });
 
     const mappedItems = filteredList.reduce((acc, item) => {
-        const date = DateTime.fromSQL(item.dt_txt);
+        const date = DateTime.fromSQL(item.dt_txt, {locale: "pt-Br"});
         const dayItem = acc.get(date.day);
         const weather = item.weather[0]
 
