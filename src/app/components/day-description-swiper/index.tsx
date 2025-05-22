@@ -109,7 +109,7 @@ function DaySwiperDescriptionComponent({
                                 grid: {
                                     display: false
                                 },
-                                max: getMaxTemp() + 1
+                                max: getMaxTemp() + 2
                             }
                         },
                     },
@@ -146,7 +146,7 @@ function DaySwiperDescriptionComponent({
 
         }, []);
 
-        return <canvas ref={canvaRef} height={isMobile ? 150 : 70}></canvas>
+        return <canvas ref={canvaRef} height={isMobile ? 150 : 60}></canvas>
     }
 
     const SwiperItem = ({ item }: { item: ListType }) => {

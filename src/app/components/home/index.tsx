@@ -81,7 +81,7 @@ export function Home({ city: initialCity }: { city: CurrentCityType }) {
                                 <span >| Nuvens {currentCity.clouds.all}%</span>
                             </div>
                             <div className="d-flex gap-2 justify-content-center">
-                                <span className={`m-0`} >Humidade {currentCity.humidity}%</span>
+                                <span className={`m-0`} >Humidade {currentCity.humidity}% |</span>
                                 <span className={`m-0`} >S. Térmica {currentCity.feels_like}&deg;C</span>
                             </div>
                         </div>
